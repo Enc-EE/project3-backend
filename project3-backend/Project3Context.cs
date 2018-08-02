@@ -10,7 +10,26 @@ namespace project3_backend
 {
     public class Project3Context : DbContext
     {
+        private readonly string username;
+
+        public Project3Context()
+        {
+            username = "automatic";
+        }
+
+        public Project3Context(string username)
+        {
+            this.username = username;
+        }
+
+        public Project3Context(User user)
+        {
+            Users.Attach(user);
+            username = user.Subject;
+        }
+
         public DbSet<List> Lists { get; set; }
+        public DbSet<ListItem> ListItems { get; set; }
         public DbSet<User> Users { get; set; }
 
         public override int SaveChanges()
@@ -27,7 +46,7 @@ namespace project3_backend
 
         private void UpdateAudit()
         {
-            var currentUsername = ClaimsPrincipal.Current.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var currentUsername = username;
 
             foreach (var entity in ChangeTracker.Entries().Where(x => x.Entity is IDbEntity && x.State == EntityState.Added))
             {

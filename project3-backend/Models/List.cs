@@ -12,6 +12,9 @@ namespace project3_backend.Models
         [Key]
         public long Id { get; set; }
 
+        [Required]
+        public string Name { get; set; }
+
         public User Owner { get; set; }
         public ICollection<ListItem> ListItems { get; set; }
 

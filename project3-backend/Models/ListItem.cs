@@ -1,4 +1,5 @@
-﻿using project3_backend.Interfaces;
+﻿using Newtonsoft.Json;
+using project3_backend.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +13,9 @@ namespace project3_backend.Models
         [Key]
         public long Id { get; set; }
 
+        [JsonIgnore]
         public List List { get; set; }
+
         public string Name { get; set; }
 
         public DateTime CreatedAt { get; set; }

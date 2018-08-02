@@ -143,14 +143,25 @@
   <ItemGroup>
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ListsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IDbEntity.cs" />
+    <Compile Include="Migrations\201808021719133_initial.cs" />
+    <Compile Include="Migrations\201808021719133_initial.Designer.cs">
+      <DependentUpon>201808021719133_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808021722188_list-name-not-null.cs" />
+    <Compile Include="Migrations\201808021722188_list-name-not-null.Designer.cs">
+      <DependentUpon>201808021722188_list-name-not-null.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\List.cs" />
     <Compile Include="Models\ListItem.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\VerifiedJwt.cs" />
     <Compile Include="Project3Context.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -171,6 +182,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201808021719133_initial.resx">
+      <DependentUpon>201808021719133_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808021722188_list-name-not-null.resx">
+      <DependentUpon>201808021722188_list-name-not-null.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
