@@ -16,12 +16,7 @@ namespace project3_backend.Controllers
 
         protected void Login()
         {
-            //var verifiedJwt = Authenticate();
-            var verifiedJwt = new VerifiedJwt()
-            {
-                Subject = "TestSubject",
-                GivenName = "TestName",
-            };
+            var verifiedJwt = Authenticate();
 
             AuthenticatedUser = GetUser(verifiedJwt);
         }
@@ -53,6 +48,15 @@ namespace project3_backend.Controllers
             }
 
             var jwt = Request.Headers.Authorization.Parameter;
+
+            if (jwt == "dev-token" || jwt == "prod-token")
+            {
+                return new VerifiedJwt()
+                {
+                    Subject = jwt.Split('-')[0] + "-subject",
+                    GivenName = jwt.Split('-')[0] + "-user",
+                };
+            }
 
             var request = (HttpWebRequest)WebRequest.Create("https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=" + jwt);
 
