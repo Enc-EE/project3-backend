@@ -2,6 +2,9 @@ using System.Web.Http;
 using WebActivatorEx;
 using project3_backend;
 using Swashbuckle.Application;
+using Swashbuckle.Swagger;
+using System.Web.Http.Description;
+using System.Collections.Generic;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
@@ -61,7 +64,7 @@ namespace project3_backend
                         //c.BasicAuth("basic")
                         //    .Description("Basic HTTP Authentication");
                         //
-						// NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
+                        // NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
                         //c.ApiKey("apiKey")
                         //    .Description("API Key Authentication")
                         //    .Name("apiKey")
@@ -158,6 +161,9 @@ namespace project3_backend
                         //
                         //c.OperationFilter<AssignOAuth2SecurityRequirements>();
 
+                        c.OperationFilter<AddRequiredHeaderParameter>();
+
+
                         // Post-modify the entire Swagger document by wiring up one or more Document filters.
                         // This gives full control to modify the final SwaggerDocument. You should have a good understanding of
                         // the Swagger 2.0 spec. - https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md
@@ -250,6 +256,24 @@ namespace project3_backend
                         //
                         //c.EnableApiKeySupport("apiKey", "header");
                     });
+        }
+    }
+
+    public class AddRequiredHeaderParameter : IOperationFilter
+    {
+        public void Apply(Operation operation, SchemaRegistry schemaRegistry, ApiDescription apiDescription)
+        {
+            if (operation.parameters == null)
+                operation.parameters = new List<Parameter>();
+
+            operation.parameters.Add(new Parameter
+            {
+                name = "Authorization",
+                @in = "header",
+                description = "access token",
+                required = false,
+                type = "string"
+            });
         }
     }
 }

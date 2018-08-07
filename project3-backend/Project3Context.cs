@@ -12,12 +12,11 @@ namespace project3_backend
     {
         private readonly string username;
 
-        public Project3Context()
+        public Project3Context() : this("automatic")
         {
-            username = "automatic";
         }
 
-        public Project3Context(string username)
+        public Project3Context(string username) : base("name=Project3db")
         {
             this.username = username;
         }
