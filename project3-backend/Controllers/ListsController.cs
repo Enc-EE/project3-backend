@@ -39,13 +39,9 @@ namespace project3_backend.Controllers
         public long PostList([FromBody]List list)
         {
             Login();
-            list.Owner = AuthenticatedUser;
-            if (list.ListItems != null)
-            {
-                list.ListItems = new List<ListItem>();
-            }
             using (var ctx = new Project3Context(AuthenticatedUser))
             {
+                list.Owner = AuthenticatedUser;
                 if (list.Id > 0 && ctx.Lists.Any(l => l.Id == list.Id))
                 {
                     // update with post not allowed

@@ -21,10 +21,9 @@ namespace project3_backend
             this.username = username;
         }
 
-        public Project3Context(User user)
+        public Project3Context(User user) : this(user.Subject)
         {
             Users.Attach(user);
-            username = user.Subject;
         }
 
         public DbSet<List> Lists { get; set; }
