@@ -29,7 +29,7 @@ namespace project3_backend.Controllers
                 {
                     ctx.Users.Add(new User()
                     {
-                        Name = verifiedJwt.GivenName,
+                        Name = verifiedJwt.EMail,
                         Subject = verifiedJwt.Subject
                     });
                     ctx.SaveChanges();

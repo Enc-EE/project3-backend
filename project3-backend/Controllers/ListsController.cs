@@ -76,9 +76,14 @@ namespace project3_backend.Controllers
             Login();
             using (var ctx = new Project3Context(AuthenticatedUser))
             {
-                var list = ctx.Lists.FirstOrDefault(l => l.Id == listId);
+                var list = ctx.Lists.Include("ListItems").FirstOrDefault(l => l.Id == listId);
                 if (list != null)
                 {
+
+                    foreach (var listItem in list.ListItems.ToList())
+                    {
+                        ctx.ListItems.Remove(listItem);
+                    }
                     ctx.Lists.Remove(list);
                     ctx.SaveChanges();
                 }
