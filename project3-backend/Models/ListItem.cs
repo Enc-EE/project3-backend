@@ -17,6 +17,7 @@ namespace project3_backend.Models
         public List List { get; set; }
 
         public string Name { get; set; }
+        public bool IsSelected { get; set; }
 
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }

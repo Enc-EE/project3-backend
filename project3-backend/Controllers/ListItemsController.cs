@@ -66,6 +66,7 @@ namespace project3_backend.Controllers
                     if (listItem != null)
                     {
                         listItem.Name = value.Name;
+                        listItem.IsSelected = value.IsSelected;
                         ctx.SaveChanges();
                     }
                 }

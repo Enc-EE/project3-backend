@@ -165,6 +165,10 @@
     <Compile Include="Migrations\201808021722188_list-name-not-null.Designer.cs">
       <DependentUpon>201808021722188_list-name-not-null.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808231603519_list item selection.cs" />
+    <Compile Include="Migrations\201808231603519_list item selection.Designer.cs">
+      <DependentUpon>201808231603519_list item selection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\List.cs" />
     <Compile Include="Models\ListItem.cs" />
@@ -197,6 +201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808021722188_list-name-not-null.resx">
       <DependentUpon>201808021722188_list-name-not-null.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808231603519_list item selection.resx">
+      <DependentUpon>201808231603519_list item selection.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

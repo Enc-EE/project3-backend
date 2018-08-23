@@ -55,6 +55,7 @@ namespace project3_backend.Controllers
                 {
                     Subject = jwt.Split('-')[0] + "-subject",
                     GivenName = jwt.Split('-')[0] + "-user",
+                    EMail = jwt.Split('-')[0] + "-mail",
                 };
             }
 
