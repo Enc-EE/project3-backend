@@ -150,6 +150,8 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ListItemGroupsController.cs" />
+    <Compile Include="Controllers\ListSharingsController.cs" />
     <Compile Include="Controllers\ListItemsController.cs" />
     <Compile Include="Controllers\ListsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -169,9 +171,19 @@
     <Compile Include="Migrations\201808231603519_list item selection.Designer.cs">
       <DependentUpon>201808231603519_list item selection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808252057468_groups.cs" />
+    <Compile Include="Migrations\201808252057468_groups.Designer.cs">
+      <DependentUpon>201808252057468_groups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808261559261_sharing.cs" />
+    <Compile Include="Migrations\201808261559261_sharing.Designer.cs">
+      <DependentUpon>201808261559261_sharing.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\List.cs" />
     <Compile Include="Models\ListItem.cs" />
+    <Compile Include="Models\ListItemGroup.cs" />
+    <Compile Include="Models\ListSharing.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\VerifiedJwt.cs" />
     <Compile Include="Project3Context.cs" />
@@ -204,6 +216,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808231603519_list item selection.resx">
       <DependentUpon>201808231603519_list item selection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808252057468_groups.resx">
+      <DependentUpon>201808252057468_groups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808261559261_sharing.resx">
+      <DependentUpon>201808261559261_sharing.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -28,7 +28,9 @@ namespace project3_backend
 
         public DbSet<List> Lists { get; set; }
         public DbSet<ListItem> ListItems { get; set; }
+        public DbSet<ListItemGroup> ListItemGroups { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<ListSharing> ListSharings { get; set; }
 
         public override int SaveChanges()
         {

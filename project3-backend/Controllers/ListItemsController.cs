@@ -10,6 +10,7 @@ namespace project3_backend.Controllers
 {
     public class ListItemsController : BaseController
     {
+        [HttpGet]
         [Route("api/lists/{listId}/list-items")]
         public List<ListItem> GetListItems(long listId)
         {
@@ -17,17 +18,20 @@ namespace project3_backend.Controllers
             List<ListItem> listItems = new List<ListItem>();
             using (var ctx = new Project3Context(AuthenticatedUser))
             {
-                var list = ctx.Lists.Include("ListItems").FirstOrDefault(l => l.Owner.Id == AuthenticatedUser.Id && l.Id == listId);
+                var list = ctx.Lists.Include("ListItems").Include("ListItemGroups").FirstOrDefault(l => l.Id == listId);
                 if (list.ListItems != null)
                 {
                     listItems = list.ListItems.ToList();
                 }
             }
+            listItems.ForEach(x => x.List = null);
+            listItems.ForEach(x => x.ListItemGroup = null);
             return listItems;
         }
 
+        [HttpPost]
         [Route("api/lists/{listId}/list-items")]
-        public long PostListItem(long listId, [FromBody]ListItem listItem)
+        public long CreateListItem(long listId, [FromBody]ListItem listItem)
         {
             Login();
             using (var ctx = new Project3Context(AuthenticatedUser))
@@ -40,6 +44,14 @@ namespace project3_backend.Controllers
                     }
                     else
                     {
+                        if (listItem.ListItemGroup?.Id > 0)
+                        {
+                            var listItemGroup = ctx.ListItemGroups.FirstOrDefault(x => x.Id == listItem.ListItemGroup.Id);
+                            if (listItemGroup != null)
+                            {
+                                listItem.ListItemGroup = listItemGroup;
+                            }
+                        }
                         listItem.List = ctx.Lists.Include("ListItems").Single(l => l.Id == listId);
                         listItem = ctx.ListItems.Add(listItem);
                     }
@@ -53,8 +65,9 @@ namespace project3_backend.Controllers
             return listItem.Id;
         }
 
+        [HttpPut]
         [Route("api/lists/{listId}/list-items/{listItemId}")]
-        public void PutListItem(long listId, long listItemId, [FromBody]ListItem value)
+        public void UpdateListItem(long listId, long listItemId, [FromBody]ListItem value)
         {
             Login();
             using (var ctx = new Project3Context(AuthenticatedUser))
@@ -73,6 +86,7 @@ namespace project3_backend.Controllers
             }
         }
 
+        [HttpDelete]
         [Route("api/lists/{listId}/list-items/{listItemId}")]
         public void DeleteListItem(long listId, long listItemId)
         {

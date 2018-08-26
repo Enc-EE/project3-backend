@@ -2,8 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace project3_backend.Models
 {
@@ -17,6 +16,9 @@ namespace project3_backend.Models
 
         public User Owner { get; set; }
         public ICollection<ListItem> ListItems { get; set; }
+        public ICollection<ListItemGroup> ListItemGroups { get; set; }
+        public bool IsGroupingEnabled { get; set; }
+        public ICollection<ListSharing> ListSharings { get; set; }
 
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }
